@@ -5,7 +5,7 @@ namespace aoc2019
 {
     interface IDay
     {
-        void Run(StreamReader reader, params string[] args);
+        void Run(params string[] args);
     }
     public static class Program
     {
@@ -33,9 +33,7 @@ namespace aoc2019
                     Console.Error.WriteLine("invalid day {0}", args[0]);
                     return;
             }
-            using var input = new FileStream(args[1], FileMode.Open, FileAccess.Read);
-            using var reader = new StreamReader(input);
-            day.Run(reader, args[2..]);
+            day.Run(args[1..]);
             Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
         }
     }

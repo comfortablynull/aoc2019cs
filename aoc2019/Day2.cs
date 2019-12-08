@@ -38,17 +38,15 @@ namespace aoc2019
 
             return state[0];
         }
-        public void Run(StreamReader reader, params string[] args)
+        public void Run(params string[] args)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
+            using var i = new FileStream(args[0], FileMode.Open, FileAccess.Read);
+            using var reader = new StreamReader(i);
             if (args.Length < 2)
             {
                 throw new ApplicationException("noun and verb must be specified");
             }
-            int noun = int.Parse(args[0]), verb = int.Parse(args[1]);
+            int noun = int.Parse(args[1]), verb = int.Parse(args[2]);
             var line = reader.ReadLine();
             if (line == null)
             {
@@ -62,7 +60,7 @@ namespace aoc2019
                 return;
             }
 
-            var target = int.Parse(args[2]);
+            var target = int.Parse(args[3]);
             for (var n = 0; n < input.Count; n++)
             {
                 for (var v = 0; v < input.Count; v++)

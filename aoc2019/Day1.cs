@@ -24,8 +24,10 @@ namespace aoc2019
             return intial;
         }
         
-        public void Run(StreamReader reader, params string[] args)
+        public void Run(params string[] args)
         {
+            using var input = new FileStream(args[0], FileMode.Open, FileAccess.Read);
+            using var reader = new StreamReader(input);
             long part1 = 0;
             long part2 = 0;
             while (reader.Peek() >= 0)
