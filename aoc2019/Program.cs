@@ -17,24 +17,14 @@ namespace aoc2019
                 Console.Error.WriteLine("you must specify a day");
                 return;
             }
-            IDay day;
-            switch(args[0])
-            {
-                case "1":
-                    day = new Day1();
-                    break;
-                case "2":
-                    day = new Day2();
-                    break;
-                case "3":
-                    day = new Day3();
-                    break;
-                default:
-                    Console.Error.WriteLine("invalid day {0}", args[0]);
-                    return;
-            }
+
+            var n = String.Format("aoc2019.Day{0}", args[0]);
+            IDay day = (IDay)Activator.CreateInstance(Type.GetType(n));
+            Console.WriteLine(n);
+            var dayWatch = new System.Diagnostics.Stopwatch();
             day.Run(args[1..]);
-            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Day Execution Time: {dayWatch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
         }
     }
 }
